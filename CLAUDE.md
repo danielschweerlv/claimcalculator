@@ -58,7 +58,7 @@ Do not re-brainstorm these — they are settled:
 
 - **Supabase:** project `claimcalculator.ai`, ref `uawtkzzyeydfgnpiaqfb`, region `us-east-1`
 - **Vercel:** project `antigrav-claimcalc`, ID `prj_Ndmgm1URg1V3aFUnjVI8WGJFzWWV`
-- **Repo path:** `~/Desktop/antigrav-claimcalc/antigrav-claimcalc/` (nested — inner dir is the project root)
+- **Repo path:** `/Users/daniel/Desktop/Claude Attic/antigrav-claimcalc/antigrav-claimcalc/` (nested — inner dir is the project root)
 
 ## Tech Stack
 

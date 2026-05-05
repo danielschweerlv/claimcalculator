@@ -26,3 +26,18 @@ dist-ssr
 .vercel
 .superpowers
 .worktrees
+
+# Local Ruflo / agent runtime artifacts
+.claude-flow
+.swarm
+.claude/memory.db*
+.claude/settings.json
+.claude/skills/hooks-automation/
+.claude/skills/pair-programming/
+.claude/skills/skill-builder/
+.claude/skills/sparc-methodology/
+.claude/skills/stream-chain/
+.claude/skills/swarm-advanced/
+.claude/skills/swarm-orchestration/
+.claude/skills/verification-quality/
+ruvector.db
