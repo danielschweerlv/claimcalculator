@@ -54,7 +54,7 @@ function AdminShell({ children }) {
 
 function PublicLayout() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#111318]">
+    <div className="flex flex-col min-h-screen bg-[#111318] overflow-x-hidden">
       <div className="fixed inset-0 z-0 pointer-events-none">
         <CanvasRevealEffect
           animationSpeed={3}

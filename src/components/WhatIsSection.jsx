@@ -9,8 +9,8 @@ const FEATURES = [
   },
   {
     icon: 'analytics',
-    title: 'Trained on Real Nevada Cases',
-    body: 'Our AI analyzes details from real Nevada injury cases and the settlements they received, enabling it to predict case values specific to Nevada courts and insurers.',
+    title: 'Grounded in Nevada Case Signals',
+    body: 'The estimate model weighs Nevada-specific accident facts, injury patterns, insurance context, and settlement-value signals.',
   },
   {
     icon: 'edit_note',
@@ -20,7 +20,7 @@ const FEATURES = [
   {
     icon: 'price_check',
     title: 'Estimates Your Case Value',
-    body: 'Once we understand your case, ClaimCalculator.ai\'s AI cross-references Nevada legal precedents and insurance payout data to generate your estimate.',
+    body: 'Once we understand your case, ClaimCalculator.ai compares the key factors that tend to move settlement value and generates an informational range.',
   },
 ]
 
@@ -43,7 +43,7 @@ export default function WhatIsSection() {
   const navigate = useNavigate()
 
   return (
-    <section className="py-16 lg:py-24 px-4 lg:px-8">
+    <section className="py-16 lg:py-24 px-4 lg:px-8 overflow-hidden">
       <div className="max-w-5xl mx-auto">
 
         {/* ── Header ──────────────────────────────────────────── */}
@@ -55,21 +55,20 @@ export default function WhatIsSection() {
           transition={{ type: 'spring', bounce: 0.2, duration: 1.2 }}
         >
           <h2
-            className="font-headline font-black text-white mb-5"
-            style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', lineHeight: 1.1 }}
+            className="font-headline font-black text-white mb-5 break-words max-w-md sm:max-w-none mx-auto"
+            style={{ fontSize: 'clamp(1.55rem, 5vw, 3rem)', lineHeight: 1.1 }}
           >
-            What is <span className="text-primary">Calculator.ai</span>?
+            What is <span className="text-primary block sm:inline">ClaimCalculator</span>?
           </h2>
           <p
-            className="mx-auto"
+            className="mx-auto max-w-md sm:max-w-[600px]"
             style={{
               fontSize: '17px',
               lineHeight: 1.75,
               color: 'rgba(255,255,255,0.7)',
-              maxWidth: '600px',
             }}
           >
-            Most people have no idea what their case is worth when they sit down with an insurance adjuster. We fix that. In 2 minutes you'll know your number and exactly what kind of representation could get you more of it.
+            Most people have no idea what their case is worth when they sit down with an insurance adjuster. We make the range easier to see, then show where representation may change the outcome.
           </p>
         </motion.div>
 
@@ -85,7 +84,7 @@ export default function WhatIsSection() {
             <motion.div
               key={title}
               variants={itemVariants}
-              className="gradient-border flex flex-col gap-3 p-6 rounded-xl transition-all duration-300 group"
+              className="gradient-border flex flex-col gap-3 p-6 rounded-xl transition-all duration-300 group min-w-0 overflow-hidden w-full max-w-md sm:max-w-none mx-auto"
               style={{
                 background: 'rgba(255,255,255,0.03)',
               }}
@@ -102,12 +101,12 @@ export default function WhatIsSection() {
                     {icon}
                   </span>
                 </div>
-                <h4 className="font-headline text-white text-[19px] leading-tight">
+                <h4 className="font-headline text-white text-[19px] leading-tight min-w-0">
                   {title}
                 </h4>
               </div>
               <p
-                className="text-[15px] leading-relaxed"
+                className="text-[15px] leading-relaxed break-words"
                 style={{ color: 'rgba(255,255,255,0.65)' }}
               >
                 {body}
@@ -120,7 +119,7 @@ export default function WhatIsSection() {
         <div className="text-center">
           <button
             onClick={() => navigate('/calculator')}
-            className="cta-gradient cta-shimmer text-on-primary-fixed px-8 py-4 rounded-[16px] font-headline font-bold text-base inline-flex items-center gap-2 shadow-[0_0_30px_rgba(164,230,255,0.15)] hover:shadow-[0_8px_40px_rgba(164,230,255,0.25)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 group"
+            className="cta-gradient cta-shimmer text-on-primary-fixed px-6 sm:px-8 py-4 rounded-[16px] font-headline font-bold text-base inline-flex items-center justify-center gap-2 whitespace-nowrap max-w-full shadow-[0_0_30px_rgba(164,230,255,0.15)] hover:shadow-[0_8px_40px_rgba(164,230,255,0.25)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 group"
           >
             See What Your Case Is Worth
             <span

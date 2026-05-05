@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { calcSettlement } from '../lib/calc-settlement'
 import { submitLead } from '../lib/submit-lead'
 
+const MotionDiv = motion.div
+
 // ─── DATA ──────────────────────────────────────────────────────────────────
 
 const CASE_TYPES = [
@@ -328,7 +330,7 @@ function ResultScreen({ data, serverEstimate }) {
   const multiplier = withoutAvg > 0 ? (withAvg / withoutAvg).toFixed(1) : '\u2014'
 
   return (
-    <motion.div
+    <MotionDiv
       className="space-y-5"
       initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -479,7 +481,7 @@ function ResultScreen({ data, serverEstimate }) {
       <p className="text-[10px] text-center text-outline leading-relaxed">
         This estimate is for informational purposes only and does not constitute legal advice. Actual values vary by case. Consult a licensed Nevada attorney before accepting any settlement.
       </p>
-    </motion.div>
+    </MotionDiv>
   )
 }
 
@@ -560,31 +562,6 @@ export default function CalculatorForm() {
 
   const handleContactBlur = (field) => {
     setContactTouched(prev => ({ ...prev, [field]: true }))
-  }
-
-  // ─── REQUIRED VALIDATION PER STEP ──────────────────────────────────────────
-  const isStepValid = () => {
-    switch (currentStepName) {
-      case 'caseType': return !!data.caseType
-      case 'accidentType': return !!data.type
-      case 'injuries': return data.injuries.length > 0
-      case 'fault': return !!data.fault
-      case 'ev': return !!data.evInvolved
-      case 'commercial': return !!data.commercialVehicle
-      case 'when': return !!data.when
-      case 'myInsurer': return !!data.myInsurer
-      case 'otherInsurer': return !!data.otherInsurer
-      case 'lawyer': return !!data.hiredLawyer
-      case 'zip': return data.zip.length >= 5
-      case 'contact': return contactComplete
-      // Non-motor-vehicle steps
-      case 'faultJob': return !!data.faultAtFault && !!data.onTheJob
-      case 'report': return (data.reportedTo || []).length > 0
-      case 'adjuster': return !!data.adjuster
-      case 'cameras': return !!data.cameras && !!data.witnesses
-      case 'conditions': return !!data.surface && !!data.lighting
-      default: return true
-    }
   }
 
   const progress = done ? 100 : (data.caseType === '' && stepIndex === 0) ? 11 : Math.round(((stepIndex + 1) / TOTAL_STEPS) * 100)
@@ -1027,7 +1004,7 @@ export default function CalculatorForm() {
   }
 
   return (
-    <div className="relative glass-card p-7 sm:p-8 md:p-10 rounded-xl border border-primary/[0.1] shadow-[0_0_80px_rgba(164,230,255,0.06),0_25px_50px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.04)] overflow-hidden">
+    <div className="relative glass-card p-4 min-[390px]:p-5 sm:p-8 md:p-10 rounded-xl border border-primary/[0.1] shadow-[0_0_80px_rgba(164,230,255,0.06),0_25px_50px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.04)] overflow-hidden">
       {/* Progress bar */}
       <div className="mb-7">
         <div className="flex justify-between items-center mb-2">
@@ -1037,7 +1014,7 @@ export default function CalculatorForm() {
           <span className="text-xs font-label text-primary font-semibold">{progress}%</span>
         </div>
         <div className="w-full bg-surface-container-lowest h-[3px] rounded-full overflow-hidden">
-          <motion.div
+          <MotionDiv
             className="bg-gradient-to-r from-primary to-[#00d1ff] h-full rounded-full"
             animate={{ width: `${progress}%` }}
             transition={{ type: 'spring', bounce: 0.1, duration: 0.6 }}
@@ -1047,7 +1024,7 @@ export default function CalculatorForm() {
 
       {/* Loading — pulsating + sign */}
       {loading && (
-        <motion.div
+        <MotionDiv
           className="text-center py-10 space-y-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -1066,7 +1043,7 @@ export default function CalculatorForm() {
           </div>
           <p className="text-base text-on-surface-variant">Our AI is analyzing your case...</p>
           <p className="text-sm text-outline">Cross-referencing Nevada settlement data and injury profiles</p>
-        </motion.div>
+        </MotionDiv>
       )}
 
       {/* Result */}
@@ -1088,7 +1065,7 @@ export default function CalculatorForm() {
       {!loading && !done && (
         <div className="min-h-[300px] relative">
           <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
+            <MotionDiv
               key={currentStepName}
               custom={direction}
               variants={stepVariants}
@@ -1097,7 +1074,7 @@ export default function CalculatorForm() {
               exit="exit"
             >
               {renderStep()}
-            </motion.div>
+            </MotionDiv>
           </AnimatePresence>
         </div>
       )}

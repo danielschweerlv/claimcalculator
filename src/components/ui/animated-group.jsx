@@ -14,7 +14,7 @@ const defaultItemVariants = {
   visible: { opacity: 1 },
 }
 
-export function AnimatedGroup({ children, className, variants, preset, disableAnimation = false, animateOnMount = false }) {
+export function AnimatedGroup({ children, className, variants, disableAnimation = false, animateOnMount = false }) {
   const containerVariants = variants?.container ?? defaultContainerVariants
   const itemVariants = variants?.item ?? defaultItemVariants
 
