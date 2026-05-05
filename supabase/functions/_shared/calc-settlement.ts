@@ -12,7 +12,11 @@ export type CalcInput = {
     | "Product Liability"
     | "Other";
   injuries?: string[];
-  fault?: "Not my fault" | "Mostly other driver" | "Shared / unclear" | "Mostly me";
+  fault?:
+    | "Not my fault"
+    | "Mostly other driver"
+    | "Shared / unclear"
+    | "Mostly me";
   faultAtFault?: "Yes" | "No";
   evInvolved?: "Yes" | "No";
   commercialVehicle?: "Yes" | "No";
@@ -46,7 +50,12 @@ export function calcSettlement(data: CalcInput): CalcResult {
       injScore = Math.max(injScore, 1);
     }
     if (
-      ["Broken or fractured bones", "Scarring", "Internal bleeding", "Memory loss"]
+      [
+        "Broken or fractured bones",
+        "Scarring",
+        "Internal bleeding",
+        "Memory loss",
+      ]
         .includes(inj)
     ) {
       injScore = Math.max(injScore, 3);
@@ -80,8 +89,7 @@ export function calcSettlement(data: CalcInput): CalcResult {
   } else {
     fM = data.faultAtFault === "Yes" ? 0.4 : 1.0;
   }
-  const faultBarred =
-    data.caseType === "Motor Vehicle Accident" &&
+  const faultBarred = data.caseType === "Motor Vehicle Accident" &&
     fM <= 0.25 &&
     data.fault === "Mostly me";
 
@@ -116,7 +124,13 @@ export function calcSettlement(data: CalcInput): CalcResult {
   }
 
   if (faultBarred) {
-    return { faultBarred, withLow: 0, withHigh: 0, withoutLow: 0, withoutHigh: 0 };
+    return {
+      faultBarred,
+      withLow: 0,
+      withHigh: 0,
+      withoutLow: 0,
+      withoutHigh: 0,
+    };
   }
 
   // ── Ratio enforcement ────────────────────────────────────────────────
