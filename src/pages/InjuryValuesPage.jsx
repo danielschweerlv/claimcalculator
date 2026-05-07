@@ -31,15 +31,15 @@ export default function InjuryValuesPage() {
         {/* Hero Header */}
         <section className="px-4 lg:px-8 pt-16 lg:pt-24 pb-8 lg:pb-12">
           <motion.div
-            className="max-w-[21rem] sm:max-w-3xl mx-0 sm:mx-auto text-center space-y-4"
+            className="w-full max-w-full sm:max-w-3xl mx-auto text-center space-y-4"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: 'spring', bounce: 0.2, duration: 1.2 }}
           >
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-headline text-on-background leading-tight break-words">
-              Injury Values <span className="text-primary italic">in Nevada</span>
+              Injury Values <span className="block sm:inline text-primary italic">in Nevada</span>
             </h1>
-            <p className="text-on-surface-variant text-base lg:text-lg max-w-xl mx-auto leading-relaxed break-words">
+            <p className="text-on-surface-variant text-base lg:text-lg w-full max-w-xl mx-auto leading-relaxed break-words">
               Compare common injury categories, the case facts that move value, and why a quick insurance offer is not the same as a documented claim range.
             </p>
           </motion.div>
@@ -47,7 +47,7 @@ export default function InjuryValuesPage() {
 
         <section className="px-4 lg:px-8 pb-10">
           <motion.div
-            className="max-w-[21.5rem] sm:max-w-5xl mx-0 sm:mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-4 lg:gap-6"
+            className="w-full max-w-full sm:max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-4 lg:gap-6"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
