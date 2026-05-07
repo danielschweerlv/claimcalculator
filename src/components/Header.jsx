@@ -14,7 +14,7 @@ const NAV_LINKS = [
 const FEATURED_CARDS = [
   {
     title: 'Injury Values in Nevada',
-    desc: 'See what your injury type is actually worth in Nevada courts right now.',
+    desc: 'Compare common injury categories and the factors that move claim value.',
     path: '/injury-values',
   },
   {
@@ -68,16 +68,11 @@ const Header = () => {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  // Close on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
-
   const handleNav = (item) => {
     setIsOpen(false);
     window.scrollTo(0, 0);
     if (item.href) {
-      window.location.href = item.href;
+      window.location.assign(item.href);
     } else if (item.path) {
       navigate(item.path);
     }
@@ -93,7 +88,7 @@ const Header = () => {
           <button
             ref={buttonRef}
             onClick={() => setIsOpen((v) => !v)}
-            className="relative flex-shrink-0 group flex items-center gap-1.5"
+            className="relative flex-shrink-0 group flex items-center gap-1 sm:gap-1.5"
             aria-label="Open menu"
             aria-expanded={isOpen}
           >
@@ -132,18 +127,19 @@ const Header = () => {
             <img
               src="/logos/claimcalculator-wordmark.png"
               alt="ClaimCalculator.ai"
-              className="h-[16px] sm:h-[24px] lg:h-7 w-auto object-contain"
-              style={{ maxWidth: 'calc(100vw - 170px)' }}
+              className="h-[15px] min-[390px]:h-[16px] sm:h-[24px] lg:h-7 w-auto object-contain"
+              style={{ maxWidth: 'calc(100vw - 190px)' }}
             />
           </div>
         </div>
 
         {/* Desktop links */}
-        <div className="hidden lg:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
           {[
             { label: 'How It Works', path: '/how-it-works' },
+            { label: 'Injury Values', path: '/injury-values' },
+            { label: 'Case Guides', path: '/case-guides' },
             { label: 'Insurance Tactics', path: '/insurance-tactics' },
-            { label: 'Your Rights', path: '/your-rights' },
           ].map(({ label, path }) => (
             <button
               key={path}
@@ -163,7 +159,7 @@ const Header = () => {
         {location.pathname !== '/calculator' && (
           <button
             onClick={() => navigate('/calculator')}
-            className="cta-gradient cta-shimmer text-on-primary-fixed px-4 sm:px-6 py-2 sm:py-2.5 rounded-[12px] font-headline font-bold text-sm sm:text-base active:scale-95 duration-200 shadow-[0_0_20px_rgba(164,230,255,0.15)] hover:shadow-[0_0_30px_rgba(164,230,255,0.3)] transition-all hover:-translate-y-0.5 flex-shrink-0"
+            className="hidden sm:flex cta-gradient cta-shimmer text-on-primary-fixed px-6 py-2.5 rounded-[12px] font-headline font-bold text-base active:scale-95 duration-200 shadow-[0_0_20px_rgba(164,230,255,0.15)] hover:shadow-[0_0_30px_rgba(164,230,255,0.3)] transition-all hover:-translate-y-0.5 flex-shrink-0"
           >
             Free Evaluation
           </button>
@@ -253,9 +249,9 @@ const Header = () => {
             </div>
 
             {/* Bottom CTA row */}
-            <div className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between">
-              <p className="text-[11px] text-outline">
-                ClaimCalculator.ai — Nevada's AI-Powered Personal Injury Calculator
+            <div className="mt-5 pt-4 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <p className="text-[11px] text-outline leading-snug">
+                ClaimCalculator.ai — Nevada personal injury estimates
               </p>
               <button
                 onClick={() => { setIsOpen(false); navigate('/calculator'); }}

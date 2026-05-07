@@ -14,7 +14,12 @@ export const submitLeadSchema = z.object({
   accidentType: z.string().max(200).optional(),
   injuries: z.array(z.string().max(100)).default([]),
   fault: z
-    .enum(["Not my fault", "Mostly other driver", "Shared / unclear", "Mostly me"])
+    .enum([
+      "Not my fault",
+      "Mostly other driver",
+      "Shared / unclear",
+      "Mostly me",
+    ])
     .optional(),
   faultAtFault: yesNo.optional(),
   evInvolved: yesNo.optional(),

@@ -26,25 +26,29 @@ export async function checkAndRecord(
   const dayAgo = new Date(now - DAY_MS).toISOString();
 
   // Count attempts in the last hour and last day.
-  const [{ count: hourlyCount, error: hourlyErr }, { count: dailyCount, error: dailyErr }] =
-    await Promise.all([
-      supabase
-        .from("rate_limits")
-        .select("ip_hash", { count: "exact", head: true })
-        .eq("ip_hash", ipHash)
-        .gte("created_at", hourAgo),
-      supabase
-        .from("rate_limits")
-        .select("ip_hash", { count: "exact", head: true })
-        .eq("ip_hash", ipHash)
-        .gte("created_at", dayAgo),
-    ]);
+  const [
+    { count: hourlyCount, error: hourlyErr },
+    { count: dailyCount, error: dailyErr },
+  ] = await Promise.all([
+    supabase
+      .from("rate_limits")
+      .select("ip_hash", { count: "exact", head: true })
+      .eq("ip_hash", ipHash)
+      .gte("created_at", hourAgo),
+    supabase
+      .from("rate_limits")
+      .select("ip_hash", { count: "exact", head: true })
+      .eq("ip_hash", ipHash)
+      .gte("created_at", dayAgo),
+  ]);
 
   if (hourlyErr || dailyErr) {
     // Fail-open on DB errors — don't block real users because of infra hiccups.
     return { ok: true };
   }
-  if ((hourlyCount ?? 0) >= HOURLY_LIMIT) return { ok: false, reason: "hourly" };
+  if ((hourlyCount ?? 0) >= HOURLY_LIMIT) {
+    return { ok: false, reason: "hourly" };
+  }
   if ((dailyCount ?? 0) >= DAILY_LIMIT) return { ok: false, reason: "daily" };
 
   // Record this attempt.

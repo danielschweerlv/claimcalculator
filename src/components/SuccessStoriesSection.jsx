@@ -164,14 +164,14 @@ export default function SuccessStoriesSection() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-high border border-outline-variant/20 mb-2">
             <span className="material-symbols-outlined text-[#4ADE80] text-base" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
-            <span className="text-[11px] font-label font-semibold text-[#4ADE80] uppercase tracking-widest">Real Nevada Results</span>
+            <span className="text-[11px] font-label font-semibold text-[#4ADE80] uppercase tracking-widest">Nevada Case Snapshots</span>
           </div>
           <h2 className="text-3xl lg:text-5xl font-headline ">
-            What Nevada Residents{' '}
-            <span className="text-primary italic">Actually Recovered</span>
+            How Case Value{' '}
+            <span className="text-primary italic">Can Move</span>
           </h2>
           <p className="text-on-surface-variant text-base lg:text-lg max-w-2xl mx-auto">
-            These are real outcomes from people who discovered their case was worth far more than the insurance company's first offer.
+            Representative Nevada injury scenarios showing why first offers can sit far below the documented value of a claim.
           </p>
         </AnimatedGroup>
 
@@ -196,7 +196,7 @@ export default function SuccessStoriesSection() {
                   className="flex flex-col gap-4 p-6 rounded-xl bg-surface-container-low border border-white/[0.06] hover:border-primary/20 transition-all duration-300 group"
                 >
                   {/* Before / After */}
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
                     <div className="space-y-0.5">
                       <p className="text-[10px] text-outline uppercase tracking-widest font-semibold">Initial Offer</p>
                       <p className="text-lg font-headline font-bold text-on-surface-variant line-through decoration-outline/50">{fmt(s.initial)}</p>
@@ -207,7 +207,7 @@ export default function SuccessStoriesSection() {
                       <p className="text-lg font-headline font-black text-[#4ADE80]">{fmt(s.final)}</p>
                     </div>
                     {/* % badge */}
-                    <div className="ml-1 flex-shrink-0 self-start mt-1 px-2 py-1 rounded-full bg-[#4ADE80]/10 border border-[#4ADE80]/20">
+                    <div className="ml-0 sm:ml-1 flex-shrink-0 self-start mt-1 px-2 py-1 rounded-full bg-[#4ADE80]/10 border border-[#4ADE80]/20">
                       <span className="text-[11px] font-headline font-bold text-[#4ADE80]">+{increase}%</span>
                     </div>
                   </div>

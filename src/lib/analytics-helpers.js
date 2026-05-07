@@ -1,5 +1,5 @@
 import { supabase } from './supabase'
-import { format, subDays, subMonths, startOfDay, startOfWeek, startOfMonth, differenceInHours } from 'date-fns'
+import { format, subDays, startOfDay, startOfWeek, startOfMonth, differenceInHours } from 'date-fns'
 
 // ─── Formatters ──────────────────────────────────────────────────────────────
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import { formatDistanceToNow } from 'date-fns'
 
@@ -10,17 +10,16 @@ const actionLabels = {
   exported: 'Lead exported',
   sent_to_attorney: 'Sent to attorney',
   attorney_response: 'Attorney responded',
+  assigned_to_attorney: 'Assigned to attorney',
+  outcome_changed: 'Outcome changed',
+  payout_status_changed: 'Payout status changed',
 }
 
 export function ActivityLog({ leadId }) {
   const [activities, setActivities] = useState([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    fetchActivities()
-  }, [leadId])
-
-  const fetchActivities = async () => {
+  const fetchActivities = useCallback(async () => {
     const { data, error } = await supabase
       .from('lead_activity')
       .select('*')
@@ -32,7 +31,11 @@ export function ActivityLog({ leadId }) {
       setActivities(data || [])
     }
     setLoading(false)
-  }
+  }, [leadId])
+
+  useEffect(() => {
+    fetchActivities()
+  }, [fetchActivities])
 
   if (loading) {
     return <div className="text-[#bbc9cf] text-sm font-['Manrope']">Loading...</div>

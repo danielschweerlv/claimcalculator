@@ -9,7 +9,6 @@ import { ChartCard } from './ChartCard'
 import {
   fetchAttorneyMetrics,
   formatCurrency,
-  formatPercent,
   GRADE_COLORS,
 } from '@/lib/analytics-helpers'
 

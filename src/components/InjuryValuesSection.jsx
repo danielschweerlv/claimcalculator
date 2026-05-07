@@ -105,7 +105,7 @@ export default function InjuryValuesSection() {
         {/* Section Header */}
         <AnimatedGroup
           variants={{ container: { visible: { transition: { staggerChildren: 0.12 } } }, item: transitionVariants.item }}
-          className="text-center space-y-4 mb-16"
+          className="text-center space-y-4 mb-16 max-w-[21.5rem] sm:max-w-none mx-0 sm:mx-auto"
         >
           <h2 className="text-3xl lg:text-5xl font-headline ">
             What Is Your Injury Worth{' '}
@@ -119,14 +119,14 @@ export default function InjuryValuesSection() {
         {/* Cards Grid */}
         <AnimatedGroup
           variants={{ container: { visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } } }, item: transitionVariants.item }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 max-w-[21.5rem] sm:max-w-none mx-0 sm:mx-auto"
         >
           {INJURY_TYPES.map(({ name, range, desc, severity }) => {
             const sev = severityConfig[severity]
             return (
               <div
                 key={name}
-                className="group p-5 rounded-xl border flex flex-col gap-3 transition-all duration-300"
+	                className="group p-5 rounded-xl border flex flex-col gap-3 transition-all duration-300 min-w-0 overflow-hidden"
                 style={{
                   background: 'rgba(255,255,255,0.03)',
                   borderColor: 'rgba(255,255,255,0.07)',
@@ -141,7 +141,7 @@ export default function InjuryValuesSection() {
               >
                 {/* Top row: name + severity pill */}
                 <div className="flex items-start justify-between gap-3">
-                  <h4 className="text-[15px] font-headline text-white leading-snug">
+	                  <h4 className="text-[15px] font-headline text-white leading-snug break-words">
                     {name}
                   </h4>
                   <span
@@ -165,7 +165,7 @@ export default function InjuryValuesSection() {
                 </p>
 
                 {/* Description */}
-                <p className="text-sm text-on-surface-variant leading-relaxed flex-1">
+	                <p className="text-sm text-on-surface-variant leading-relaxed flex-1 break-words">
                   {desc}
                 </p>
               </div>
@@ -175,7 +175,7 @@ export default function InjuryValuesSection() {
 
         {/* Disclaimer */}
         <p
-          className="text-center mt-10"
+	          className="text-center mt-10 max-w-[21.5rem] sm:max-w-3xl mx-0 sm:mx-auto"
           style={{
             fontSize: '13px',
             color: 'rgba(255,255,255,0.35)',

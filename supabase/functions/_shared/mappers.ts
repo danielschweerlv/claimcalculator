@@ -41,7 +41,16 @@ export function mapFault(display: string | undefined): DbFaultStatus {
 }
 
 // Nevada ZIP prefixes per USPS: 889, 890, 891, 893, 894, 895, 897, 898.
-const NV_ZIP_PREFIXES = ["889", "890", "891", "893", "894", "895", "897", "898"];
+const NV_ZIP_PREFIXES = [
+  "889",
+  "890",
+  "891",
+  "893",
+  "894",
+  "895",
+  "897",
+  "898",
+];
 
 export function isNonNvZip(zip: string | undefined): boolean {
   if (!zip) return false;

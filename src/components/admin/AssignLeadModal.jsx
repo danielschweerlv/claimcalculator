@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { X, UserCheck, AlertCircle } from 'lucide-react'
 
@@ -9,11 +9,7 @@ export function AssignLeadModal({ lead, onAssigned, onClose }) {
   const [selectedId, setSelectedId] = useState(null)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    fetchEligibleAttorneys()
-  }, [])
-
-  const fetchEligibleAttorneys = async () => {
+  const fetchEligibleAttorneys = useCallback(async () => {
     setLoading(true)
 
     // Fetch active attorneys whose case_types_accepted includes the lead's case_type
@@ -59,7 +55,11 @@ export function AssignLeadModal({ lead, onAssigned, onClose }) {
 
     setAttorneys(annotated)
     setLoading(false)
-  }
+  }, [lead.case_type])
+
+  useEffect(() => {
+    fetchEligibleAttorneys()
+  }, [fetchEligibleAttorneys])
 
   const handleAssign = async () => {
     if (!selectedId) return
@@ -76,7 +76,7 @@ export function AssignLeadModal({ lead, onAssigned, onClose }) {
         lead_id: lead.id,
         attorney_id: selectedId,
         assigned_by: session?.user?.id ?? null,
-        status: 'pending',
+        outcome: 'pending',
       })
 
     if (assignError) {

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const stateNotices = [
   {
@@ -62,8 +61,6 @@ const generalNotices = [
 ]
 
 export default function LegalNoticePage() {
-  const navigate = useNavigate()
-
   return (
     <div className="min-h-screen bg-transparent relative z-10">
 

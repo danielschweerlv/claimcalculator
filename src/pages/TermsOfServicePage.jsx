@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const sections = [
   {
@@ -152,7 +151,6 @@ const sections = [
 ]
 
 export default function TermsOfServicePage() {
-  const navigate = useNavigate()
   const [activeSection, setActiveSection] = useState('introduction') 
 
   return (

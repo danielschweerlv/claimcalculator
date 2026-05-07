@@ -1,5 +1,8 @@
-import { assert, assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { calcSettlement, type CalcInput } from "./calc-settlement.ts";
+import {
+  assert,
+  assertEquals,
+} from "https://deno.land/std@0.224.0/assert/mod.ts";
+import { type CalcInput, calcSettlement } from "./calc-settlement.ts";
 
 // ── Ratio floor test: withAvg must be ≥ 4.5 × withoutAvg on every
 // reasonable input. We exercise a cartesian grid of ~200 cases.
@@ -56,7 +59,11 @@ Deno.test("calcSettlement enforces 4.5x ratio floor across input grid", () => {
             const withoutAvg = (result.withoutLow + result.withoutHigh) / 2;
             assert(
               withAvg >= 4.5 * withoutAvg,
-              `Ratio floor violated for ${JSON.stringify({ caseType, injuries, fault, when, ev })}: ${withAvg} / ${withoutAvg} = ${(withAvg / withoutAvg).toFixed(2)}`,
+              `Ratio floor violated for ${
+                JSON.stringify({ caseType, injuries, fault, when, ev })
+              }: ${withAvg} / ${withoutAvg} = ${
+                (withAvg / withoutAvg).toFixed(2)
+              }`,
             );
             checked++;
           }

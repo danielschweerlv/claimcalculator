@@ -182,12 +182,13 @@ const DotMatrix = ({
 const ShaderMaterial = ({ source, uniforms, maxFps = 60 }) => {
   const { size } = useThree();
   const ref = useRef(null);
-  let lastFrameTime = 0;
+  const lastFrameTimeRef = useRef(0);
 
   useFrame(({ clock }) => {
     if (!ref.current) return;
     const timestamp = clock.getElapsedTime();
-    lastFrameTime = timestamp;
+    if (maxFps > 0 && timestamp - lastFrameTimeRef.current < 1 / maxFps) return;
+    lastFrameTimeRef.current = timestamp;
 
     const material = ref.current.material;
     const timeLocation = material.uniforms.u_time;
